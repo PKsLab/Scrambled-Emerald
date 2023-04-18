@@ -447,6 +447,22 @@ const u8 gItemEffect_TamatoBerry[10] = {
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
+const u8 gItemEffect_AbilityUrge[8] = {
+    [0] = ITEM0_ABILITY_URGE,
+};
+
+const u8 gItemEffect_ResetUrge[8] = {
+    [0] = ITEM0_RESET_URGE,
+};
+
+const u8 gItemEffect_ItemUrge[8] = {
+    [0] = ITEM0_ITEM_URGE,
+};
+
+const u8 gItemEffect_ItemDrop[8] = {
+    [0] = ITEM0_ITEM_DROP,
+};
+
 const u8 *const gItemEffectTable[ITEMS_COUNT] =
 {
     // Medicine
@@ -576,4 +592,55 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_GREPA_BERRY]        = gItemEffect_GrepaBerry,
     [ITEM_TAMATO_BERRY]       = gItemEffect_TamatoBerry,
     [LAST_BERRY_INDEX]        = NULL,
+
+    // Wonder Launcher Items
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_1]         = gItemEffect_XAttack,
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_2]         = gItemEffect_XAttack,
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_3]         = gItemEffect_XAttack,
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_6]         = gItemEffect_XAttack,
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_1]        = gItemEffect_XDefense,
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_2]        = gItemEffect_XDefense,
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_3]        = gItemEffect_XDefense,
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_6]        = gItemEffect_XDefense,
+    [ITEM_WONDER_LAUNCHER_X_SPEED_1]          = gItemEffect_XSpeed,
+    [ITEM_WONDER_LAUNCHER_X_SPEED_2]          = gItemEffect_XSpeed,
+    [ITEM_WONDER_LAUNCHER_X_SPEED_3]          = gItemEffect_XSpeed,
+    [ITEM_WONDER_LAUNCHER_X_SPEED_6]          = gItemEffect_XSpeed,
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_1]       = gItemEffect_XAccuracy,
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_2]       = gItemEffect_XAccuracy,
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_3]       = gItemEffect_XAccuracy,
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_6]       = gItemEffect_XAccuracy,
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_1]         = gItemEffect_XSpecialAttack,
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_2]         = gItemEffect_XSpecialAttack,
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_3]         = gItemEffect_XSpecialAttack,
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_6]         = gItemEffect_XSpecialAttack,
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_1]         = gItemEffect_XSpecialDefense,
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_2]         = gItemEffect_XSpecialDefense,
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_3]         = gItemEffect_XSpecialDefense,
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_6]         = gItemEffect_XSpecialDefense,
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_1]         = gItemEffect_DireHit,
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_2]         = gItemEffect_DireHit,
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_3]         = gItemEffect_DireHit,
+    [ITEM_WONDER_LAUNCHER_GUARD_SPEC]         = gItemEffect_GuardSpec,
+    [ITEM_WONDER_LAUNCHER_ABILITY_URGE]       = gItemEffect_AbilityUrge,
+    [ITEM_WONDER_LAUNCHER_RESET_URGE]         = gItemEffect_ResetUrge,
+    [ITEM_WONDER_LAUNCHER_ITEM_URGE]          = gItemEffect_ItemUrge,
+    [ITEM_WONDER_LAUNCHER_ITEM_DROP]          = gItemEffect_ItemDrop,
+    [ITEM_WONDER_LAUNCHER_POTION]             = gItemEffect_Potion,
+    [ITEM_WONDER_LAUNCHER_SUPER_POTION]       = gItemEffect_SuperPotion,
+    [ITEM_WONDER_LAUNCHER_HYPER_POTION]       = gItemEffect_HyperPotion,
+    [ITEM_WONDER_LAUNCHER_MAX_POTION]         = gItemEffect_MaxPotion,
+    [ITEM_WONDER_LAUNCHER_FULL_RESTORE]       = gItemEffect_FullRestore,
+    [ITEM_WONDER_LAUNCHER_REVIVE]             = gItemEffect_Revive,
+    [ITEM_WONDER_LAUNCHER_MAX_REVIVE]         = gItemEffect_MaxRevive,
+    [ITEM_WONDER_LAUNCHER_ANTIDOTE]           = gItemEffect_Antidote,
+    [ITEM_WONDER_LAUNCHER_PARALYZE_HEAL]      = gItemEffect_ParalyzeHeal,
+    [ITEM_WONDER_LAUNCHER_BURN_HEAL]          = gItemEffect_BurnHeal,
+    [ITEM_WONDER_LAUNCHER_ICE_HEAL]           = gItemEffect_IceHeal,
+    [ITEM_WONDER_LAUNCHER_AWAKENING]          = gItemEffect_Awakening,
+    [ITEM_WONDER_LAUNCHER_FULL_HEAL]          = gItemEffect_FullHeal,
+    [ITEM_WONDER_LAUNCHER_ETHER]              = gItemEffect_Ether,
+    [ITEM_WONDER_LAUNCHER_MAX_ETHER]          = gItemEffect_MaxEther,
+    [ITEM_WONDER_LAUNCHER_ELIXIR]             = gItemEffect_Elixir,
+    [ITEM_WONDER_LAUNCHER_MAX_ELIXIR]         = gItemEffect_MaxElixir,
 };

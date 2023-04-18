@@ -310,6 +310,8 @@ static const u8 sText_PkmnsAbilityPreventsAbility[] = _("{B_SCR_ACTIVE_NAME_WITH
 static const u8 sText_PkmnsXCuredItsYProblem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncured its {B_BUFF1} problem!");
 static const u8 sText_PkmnsXHadNoEffectOnY[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nhad no effect on {B_EFF_NAME_WITH_PREFIX}!");
 const u8 gText_StatSharply[] = _("sharply ");
+const u8 gText_StatDrastically[] = _("drastically ");
+const u8 gText_StatImmensely[] = _("Immensely ");
 const u8 gText_StatRose[] = _("rose!");
 static const u8 sText_StatHarshly[] = _("harshly ");
 static const u8 sText_StatFell[] = _("fell!");
@@ -442,6 +444,7 @@ static const u8 sText_SpAttack[] = _("sp. attack");
 static const u8 sText_SpDefense[] = _("sp. defense");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
+static const u8 sText_ItemDrop[] = _("{B_ATK_NAME_WITH_PREFIX} lost it's {B_LAST_ITEM}!");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -1428,6 +1431,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TARGETTOOHEAVY - BATTLESTRINGS_TABLE_START] = sText_TargetTooHeavy,
     [STRINGID_ATTACKERLOSTELECTRICTYPE - BATTLESTRINGS_TABLE_START] = sText_AttackerLostElectricType,
     [STRINGID_PKMNSABILITYPREVENTSABILITY - BATTLESTRINGS_TABLE_START] = sText_PkmnsAbilityPreventsAbility,
+    [STRINGID_ITEMDROP - BATTLESTRINGS_TABLE_START] = sText_ItemDrop,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1913,6 +1917,10 @@ const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNA
 const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
 const u8 gText_BattleSwitchWhich5[] = _("-");
+const u8 gText_ActivateAbilityUrge[] = _("{B_PLAYER_NAME} activates Ability Urge!");
+const u8 gText_ActivateResetUrge[] = _("{B_PLAYER_NAME} activates Reset Urge!");
+const u8 gText_ActivateItemUrge[] = _("{B_PLAYER_NAME} activates Item Urge!");
+const u8 gText_ActivateItemDrop[] = _("{B_PLAYER_NAME} activates Item Drop!");
 
 // Unused
 static const u8 *const sStatNamesTable2[] =

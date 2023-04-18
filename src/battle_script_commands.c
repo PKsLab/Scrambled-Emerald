@@ -2075,7 +2075,9 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     }
     else
     {
-        critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
+        critChance  = 1 * ((gStatuses4[gBattlerAttacker] & STATUS4_CRIT_STAGE_1) != 0)
+                    + 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_CRIT_STAGE_2) != 0)
+                    + 3 * ((gStatuses4[gBattlerAttacker] & STATUS4_CRIT_STAGE_3) != 0)
                     + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
@@ -2084,6 +2086,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + 2 * (GetBattlerFriendshipScore(gBattlerAttacker) >= FRIENDSHIP_200_TO_254)
                 #endif
                     + (abilityAtk == ABILITY_SUPER_LUCK);
+                    
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
             critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
@@ -2840,7 +2843,7 @@ u8 GetBattlerTurnOrderNum(u8 battlerId)
     return i;
 }
 
-static void CheckSetUnburden(u8 battlerId)
+void CheckSetUnburden(u8 battlerId)
 {
     if (GetBattlerAbility(battlerId) == ABILITY_UNBURDEN)
     {
@@ -16429,6 +16432,19 @@ u8 GetFirstFaintedPartyIndex(u8 battlerId)
     return PARTY_SIZE;
 }
 
+void BS_JumpIfStatus4(void) {
+    NATIVE_ARGS(u8 battler, u32 flags, const u8* jumpInstr);
+
+    u8 battlerId = GetBattlerForBattleScript(cmd->battler);
+    u32 flags = cmd->flags;
+    const u8 *jumpInstr = cmd->jumpInstr;
+
+    if (gStatuses4[battlerId] & flags && gBattleMons[battlerId].hp != 0)
+        gBattlescriptCurrInstr = jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
 void BS_ItemRestoreHP(void) {
     NATIVE_ARGS();
     u16 healAmount;
@@ -16570,5 +16586,20 @@ void BS_ItemRestorePP(void) {
         }
     }
     PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(mon, MON_DATA_SPECIES));
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_ItemIncreaseCrit(void) {
+    NATIVE_ARGS();
+    u16 stages = ItemId_GetHoldEffectParam(gLastUsedItem);
+    
+    if (stages == STAT_STAGE_1)
+        gStatuses4[gBattlerAttacker] |= STATUS4_CRIT_STAGE_1;
+    else if (stages == STAT_STAGE_2)
+        gBattleMons[gBattlerAttacker].status2 |= STATUS2_CRIT_STAGE_2;
+    else if (stages == STAT_STAGE_3)
+        gStatuses4[gBattlerAttacker] |= STATUS4_CRIT_STAGE_3;
+
+    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
