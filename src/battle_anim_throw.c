@@ -1587,6 +1587,10 @@ static void SpriteCB_Ball_Capture_Step(struct Sprite *sprite)
         UpdateOamPriorityInAllHealthboxes(1, FALSE);
         m4aMPlayAllStop();
         PlaySE(MUS_RG_CAUGHT_INTRO);
+        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        {
+            m4aMPlayAllContinue();
+        }
     }
     else if (sprite->sTimer == 315)
     {
@@ -2509,6 +2513,7 @@ void TryShinyAnimation(u8 battler, struct Pokemon *mon)
             return;
         }
     }
+
 
     gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = TRUE;
 }

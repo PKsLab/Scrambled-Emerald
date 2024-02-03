@@ -2772,7 +2772,7 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
         if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
             continue;
 
-        if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
+        if (GetMonData(&party[i], MON_DATA_STATUS))
             return TRUE;
     }
 
@@ -3046,7 +3046,7 @@ bool32 ShouldUseWishAromatherapy(u32 battlerAtk, u32 battlerDef, u32 move)
                 needHealing = TRUE;
             }
 
-            if (GetMonData(&party[i], MON_DATA_STATUS, NULL) != STATUS1_NONE)
+            if (GetMonData(&party[i], MON_DATA_STATUS, NULL))
             {
                 if (move != MOVE_HEAL_BELL || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
                     hasStatus = TRUE;

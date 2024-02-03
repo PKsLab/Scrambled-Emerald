@@ -3836,6 +3836,18 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Calvin1),
     },
 
+    [TRAINER_SHADOW_TEST] =
+    {
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
+        .trainerName = _("MIROR B"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .party = TRAINER_PARTY(sParty_ShadowTest),
+    },
+
     [TRAINER_BILLY] =
     {
         .trainerClass = TRAINER_CLASS_YOUNGSTER,

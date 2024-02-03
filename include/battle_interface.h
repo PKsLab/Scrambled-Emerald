@@ -13,7 +13,8 @@ enum
 enum
 {
     HEALTH_BAR,
-    EXP_BAR
+    EXP_BAR,
+    HEART_GAUGE
 };
 
 enum
@@ -46,7 +47,7 @@ enum
 #define TAG_STATUS_SUMMARY_BALLS_TILE   0xD714
 
 #define TAG_HEALTHBAR_PAL               TAG_HEALTHBAR_PLAYER1_TILE
-#define TAG_HEALTHBOX_PAL               TAG_HEALTHBOX_PLAYER1_TILE
+#define TAG_HEALTHBOX_PAL               TAG_HEALTHBOX_PLAYER1_PAL
 
 #define TAG_MEGA_TRIGGER_TILE           0xD777
 #define TAG_MEGA_INDICATOR_TILE         0xD778
@@ -56,13 +57,19 @@ enum
 #define TAG_BURST_TRIGGER_TILE          0xD77C
 #define TAG_DYNAMAX_TRIGGER_TILE        0xD77D
 #define TAG_DYNAMAX_INDICATOR_TILE      0xD77E
+#define TAG_REVERSE_INDICATOR_TILE      0xD77D
 
 #define TAG_MEGA_TRIGGER_PAL            0xD777
 #define TAG_MEGA_INDICATOR_PAL          0xD778
-#define TAG_MISC_INDICATOR_PAL          0xD779 // Alpha, Omega, and Dynamax indicators use the same palette as each of them only uses 4 different colors.
+#define TAG_MISC_INDICATOR_PAL          0xD779 // Alpha, Omega, Dynamax, and Reverse indicators use the same palette as each of them only uses 4 different colors.
 #define TAG_ZMOVE_TRIGGER_PAL           0xD77B
 #define TAG_BURST_TRIGGER_PAL           0xD77C
 #define TAG_DYNAMAX_TRIGGER_PAL         0xD77D
+
+#define TAG_HEALTHBOX_PLAYER1_PAL       0xD77D
+#define TAG_HEALTHBOX_PLAYER2_PAL       0xD77E
+#define TAG_HEALTHBOX_OPPONENT1_PAL     0xD77F
+#define TAG_HEALTHBOX_OPPONENT2_PAL     0xD780
 
 enum
 {

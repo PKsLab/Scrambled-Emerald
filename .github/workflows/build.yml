@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - upcoming
+      - shadow
   pull_request:
 
 jobs:

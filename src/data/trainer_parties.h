@@ -4032,6 +4032,23 @@ static const struct TrainerMon sParty_Calvin1[] = {
     }
 };
 
+static const struct TrainerMon sParty_ShadowTest[] = {
+    {
+    .iv = 0,
+    .lvl = 2,
+    .species = SPECIES_LOTAD,
+    .isShadow = 1,
+    .heartGauge = 3000,
+    },
+    {
+    .iv = 0,
+    .lvl = 2,
+    .species = SPECIES_LOTAD,
+    .isShadow = 0,
+    .heartGauge = 0,
+    }
+};
+
 static const struct TrainerMon sParty_Billy[] = {
     {
     .lvl = 5,
