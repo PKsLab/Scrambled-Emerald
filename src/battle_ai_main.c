@@ -1328,6 +1328,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_EVASION_DOWN:
         case EFFECT_EVASION_DOWN_2:
+        case EFFECT_SPICY_EXTRACT:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_EVASION))
                 ADJUST_SCORE(-10);
             break;
@@ -2714,6 +2715,14 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
               || gMovesInfo[aiData->partnerMove].criticalHitStage > 0
               || HasMoveWithCriticalHitChance(battlerAtkPartner))
             ADJUST_SCORE(GOOD_EFFECT);
+        break;
+    case EFFECT_SPICY_EXTRACT:
+        if (HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL)
+         && (GetWhichBattlerFaster(battlerAtkPartner, battlerDef, TRUE) == AI_IS_FASTER
+          || GetWhichBattlerFaster(battlerAtkPartner, BATTLE_PARTNER(battlerDef), TRUE) == AI_IS_FASTER)
+         && AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, move)) // Faster then partner
+            ADJUST_SCORE(GOOD_EFFECT);
+        break;
     } // our effect relative to partner
 
     // consider global move effects
@@ -3329,7 +3338,10 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] < 7 || aiData->abilities[battlerAtk] == ABILITY_NO_GUARD)
             ADJUST_SCORE(-2);
         break;
-	case EFFECT_BIDE:
+    case EFFECT_SPICY_EXTRACT:
+        // TODO: Make IncreaseStatDownScore function, just like IncreaseStatUpScore
+        break;
+    case EFFECT_BIDE:
         if (aiData->hpPercents[battlerAtk] < 90)
             ADJUST_SCORE(-2); // Should be either removed or turned into increasing score
     case EFFECT_ACUPRESSURE:
