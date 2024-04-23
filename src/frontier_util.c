@@ -633,7 +633,7 @@ const u16 gFrontierBannedSpecies[] =
     SPECIES_XERNEAS, SPECIES_YVELTAL, SPECIES_ZYGARDE, SPECIES_DIANCIE, SPECIES_HOOPA, SPECIES_VOLCANION,
     SPECIES_COSMOG, SPECIES_COSMOEM, SPECIES_SOLGALEO, SPECIES_LUNALA, SPECIES_NECROZMA, SPECIES_MAGEARNA, SPECIES_MARSHADOW, SPECIES_ZERAORA, SPECIES_MELTAN, SPECIES_MELMETAL,
     SPECIES_ZACIAN, SPECIES_ZAMAZENTA, SPECIES_ETERNATUS, SPECIES_CALYREX, SPECIES_ZARUDE,
-    SPECIES_KORAIDON, SPECIES_MIRAIDON,
+    SPECIES_KORAIDON, SPECIES_MIRAIDON, SPECIES_TERAPAGOS, SPECIES_PECHARUNT,
     0xFFFF
 };
 
@@ -1927,13 +1927,7 @@ static void AppendIfValid(u16 species, u16 heldItem, u16 hp, u8 lvlMode, u8 monL
 
     if (species == SPECIES_EGG || species == SPECIES_NONE)
         return;
-
-    for (i = 0; gFrontierBannedSpecies[i] != 0xFFFF
-      && gFrontierBannedSpecies[i] != GET_BASE_SPECIES_ID(species)
-      && IsSpeciesEnabled(gFrontierBannedSpecies[i]); i++)
-        ;
-
-    if (gFrontierBannedSpecies[i] != 0xFFFF)
+    if (gSpeciesInfo[species].isRestrictedLegendary || gSpeciesInfo[species].isMythical)
         return;
     if (lvlMode == FRONTIER_LVL_50 && monLevel > FRONTIER_MAX_LEVEL_50)
         return;
@@ -2024,7 +2018,7 @@ static void CheckPartyIneligibility(void)
         s32 species = gFrontierBannedSpecies[0];
         for (i = 0; species != 0xFFFF; i++, species = gFrontierBannedSpecies[i])
         {
-            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT)) //TODO: Get rid off this, the next loop, and gFrontierBannedSpecies
                 caughtBannedMons++;
         }
         gStringVar1[0] = EOS;
