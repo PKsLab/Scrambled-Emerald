@@ -5341,7 +5341,7 @@ static void PopulateArrayWithBattlers(u8 *battlers)
 static bool32 TryDoGimmicksBeforeMoves(void)
 {
     if (!(gHitMarker & HITMARKER_RUN)
-        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst 
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst
             || gBattleStruct->dynamax.toDynamax || gBattleStruct->tera.toTera))
     {
         u32 i, battler;
