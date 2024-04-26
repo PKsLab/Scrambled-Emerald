@@ -4282,6 +4282,12 @@ static void Cmd_getexp(void)
         {
             gBattleScripting.getexpState = 6; // goto last case
         }
+        else if (EXP_CAP_HARD && GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == GetCurrentLevelCap())
+        {
+            gBattleScripting.getexpState = 6; // goto last case
+            if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
+                MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
+        }
         else
         {
             gBattleScripting.getexpState++;
@@ -4414,6 +4420,13 @@ static void Cmd_getexp(void)
                         && (B_SPLIT_EXP < GEN_6 || gBattleMoveDamage == 0)) // only give exp share bonus in later gens if the mon wasn't sent out
                     {
                         gBattleMoveDamage += GetSoftLevelCapExpValue(gPlayerParty[*expMonId].level, gBattleStruct->expShareExpValue);;
+                    }
+
+                    if (EXP_CAP_HARD && gBattleMoveDamage != 0)
+                    {
+                        u32 growthRate = gSpeciesInfo[GetMonData(&gPlayerParty[*expMonId], MON_DATA_SPECIES)].growthRate;
+                        if (gExperienceTables[growthRate][GetCurrentLevelCap()] < gExperienceTables[growthRate][GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL)] + gBattleMoveDamage)
+                            gBattleMoveDamage = gExperienceTables[growthRate][GetCurrentLevelCap()];
                     }
 
                     ApplyExperienceMultipliers(&gBattleMoveDamage, *expMonId, gBattlerFainted);
@@ -15987,6 +16000,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
 
         value *= sExperienceScalingFactors[(faintedLevel * 2) + 10];
         value /= sExperienceScalingFactors[faintedLevel + expGetterLevel + 10];
+
         *expAmount = value + 1;
     }
 }
